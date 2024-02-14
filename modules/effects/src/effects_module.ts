@@ -12,6 +12,7 @@ import {
 } from './tokens';
 import { FunctionalEffect } from './models';
 import { getClasses, isClass } from './utils';
+import { Actions } from './actions';
 
 @NgModule({})
 export class EffectsModule {
@@ -69,6 +70,14 @@ export class EffectsModule {
       ngModule: EffectsRootModule,
       providers: [
         effectsClasses,
+        {
+          provide: Actions,
+          useClass: Actions,
+        },
+        {
+          provide: EffectsRunner,
+          useClass: EffectsRunner,
+        },
         {
           provide: _ROOT_EFFECTS,
           useValue: [effects],
